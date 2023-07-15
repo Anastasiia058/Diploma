@@ -2,6 +2,8 @@ package model;
 
 import DAO.ScoreboardDAO;
 import DTO.Scoreboard;
+import DTO.Train;
+import checkObject.CheckTrain;
 import consoleViewers.Controller;
 import consoleViewers.ScoreboardConsole;
 import consoleViewers.TimeTableConsole;
@@ -27,6 +29,31 @@ public class Logic {
             ArrayList<Scoreboard> timeTable = scoreboardDAO.readTimeTableByNameRoute(nameRoute, nameDay);
             TimeTableConsole.print(timeTable);
             chooseCommand();
+        }
+
+        if (command == 3) {
+            String password = Controller.readPassword();
+            if (!password.equals("root")) {
+                System.out.println("Пароль невірний");
+                chooseCommand();
+            }
+            else {
+                int adminCommand = Controller.chooseAdminAction();
+                if (adminCommand == 1) {
+                    String nameTrain = CheckTrain.readTrain();
+
+
+
+
+
+                }
+                    String nameStation = Controller.chooseNameStation();
+                    String timeArrival = Controller.chooseTimeArrival();
+                    ArrayList<Scoreboard> scoreboards = scoreboardDAO.readScoreboardsByStationNameAndArrival(nameStation, timeArrival);
+                    ScoreboardConsole.print(scoreboards);
+                    chooseCommand();
+            }
+
         }
     }
 

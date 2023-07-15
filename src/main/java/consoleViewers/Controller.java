@@ -14,7 +14,27 @@ public class Controller {
     public static int chooseAction() {
         System.out.println("Оберіть потрібну дію.\n" +
                 "1. Дізнатися рух поїздів на станції \n" +
-                "2. Розклад та статус потягу");
+                "2. Розклад та статус потягу \n" +
+                "3. Редагування системи");
+        String command =  scanner.nextLine();
+        if (!StringUtils.isNumeric(command)){
+            System.out.println("Невірна команда");
+            chooseAction();
+        }
+        return Integer.parseInt(command);
+    }
+
+    public static int chooseAdminAction() {
+        System.out.println("Оберіть потрібну дію.\n" +
+                "1. Додати  потяг\n" +
+                "2. Редагувати потяг\n" +
+                "3. Видалити потяг\n" +
+                "4. Додати маршрут\n" +
+                "5. Редагувати маршрут\n" +
+                "6. Видалити маршрут\n" +
+                "7. Додати станцію\n" +
+                "8. Редагувати станцію\n" +
+                "9. Видалити станцію");
         String command =  scanner.nextLine();
         if (!StringUtils.isNumeric(command)){
             System.out.println("Невірна команда");
@@ -47,4 +67,8 @@ public class Controller {
         return scanner.nextLine();
     }
 
+    public static String readPassword() {
+        System.out.println("Для того, щоб внести зміни у систему, введіть, будь ласка, пароль");
+        return scanner.nextLine();
+    }
 }

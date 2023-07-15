@@ -8,6 +8,7 @@ public class Scoreboard {
     public String typeTrain;
     public String nameRoute;
     public String nameTrain;
+
     public int idStation;
     public String nameStation;
     public String timeArrival;

@@ -10,24 +10,16 @@ public class Train {
     public String typeTrain;
 
     public Integer classTrain;
-    Scanner scanner = new Scanner(System.in);
 
-    public void readTrain() {
-        System.out.println("Введіть назву поїзда");
-        nameTrain = scanner.nextLine();
-        if (nameTrain.matches("([А-ЯҐІЇ{1}][а-яґії{30}]*)")) {
-            System.out.println("Дані прийнято");
-        } else {
-            System.out.println("Дані введено не коректно. Спробуйте ще раз");
-            readTrain();
-        }
-    }
+
 
     @Override
     public String toString() {
         return "Train{" +
                 "idTrain=" + idTrain +
                 ", nameTrain='" + nameTrain + '\'' +
+                ", statusTrain='" + typeTrain + '\'' +
+                ", statusTrain='" + classTrain + '\'' +
                 ", statusTrain='" + statusTrain + '\'' +
                 '}';
     }

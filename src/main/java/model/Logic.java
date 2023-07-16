@@ -1,14 +1,17 @@
 package model;
 
+import DAO.RouteDAO;
 import DAO.ScoreboardDAO;
 import DAO.TrainDAO;
+import DAO.TrainHasRouteDAO;
+import DTO.Route;
 import DTO.Scoreboard;
 import DTO.Train;
+import DTO.TrainHasRoute;
+import checkObject.CheckAnswer;
+import checkObject.CheckRoute;
 import checkObject.CheckTrain;
-import consoleViewers.Controller;
-import consoleViewers.ScoreboardConsole;
-import consoleViewers.TimeTableConsole;
-import consoleViewers.TrainConsole;
+import consoleViewers.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -76,8 +79,41 @@ public class Logic {
                     TrainConsole.print(trainList);
                     Integer idTrain = CheckTrain.readIdTrain();
                     trainDAO.deleteTrainByID(idTrain);}
+                if (adminCommand == 4) {
+                    Integer idRoute = CheckRoute.readIdRoute();
+                    String nameRoute = CheckRoute.readNameRoute();
+                    Route route  = new Route();
+                    route.idRoute =  idRoute;
+                    route.nameRoute = nameRoute;
+                    RouteDAO routeDAO = new RouteDAO();
+                    routeDAO.createRoute(route);
+                    System.out.println("Бажаєте підв'язати маршрут до потяга?");
+                    if (CheckAnswer.check()){
+                        TrainDAO trainDAO = new TrainDAO();
+                        ArrayList<Train> trainList = trainDAO.readAllTrains();
+                        TrainConsole.print(trainList);
+                        Integer idTrain = CheckTrain.readIdTrain();
+                        TrainHasRoute trainHasRoute = new TrainHasRoute();
+                        trainHasRoute.idTrain = idTrain;
+                        trainHasRoute.idRoute = idRoute;
+                        TrainHasRouteDAO trainHasRouteDAO = new TrainHasRouteDAO();
+                        trainHasRouteDAO.createTrainHasRoute(trainHasRoute);
+                    }
+                }
+                if (adminCommand == 5) {
+                    RouteDAO routeDAO = new RouteDAO();
+                    ArrayList<Route> routeList = routeDAO.readAllRoutes();
+                    RouteConsole.print(routeList);
+                    Integer idRoute = CheckRoute.readIdRoute();
+                    String nameRoute = CheckRoute.readNameRoute();
+                    Route route = new Route();
+                    route.idRoute = idRoute;
+                    route.nameRoute= nameRoute;
+                    routeDAO.updateRoute(route);}
 
-            }
+
+
+                }
 
         }
     }

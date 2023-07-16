@@ -3,7 +3,7 @@ package DTO;
 import java.util.Scanner;
 
 public class Route {
-    public int idRoute;
+    public Integer idRoute;
     public String nameRoute;
 
 }

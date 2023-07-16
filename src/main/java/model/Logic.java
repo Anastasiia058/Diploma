@@ -8,9 +8,11 @@ import checkObject.CheckTrain;
 import consoleViewers.Controller;
 import consoleViewers.ScoreboardConsole;
 import consoleViewers.TimeTableConsole;
+import consoleViewers.TrainConsole;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Logic {
 
@@ -53,6 +55,9 @@ public class Logic {
                     TrainDAO trainDAO = new TrainDAO();
                     trainDAO.createTrain(train);}
                 if (adminCommand == 2) {
+                    TrainDAO trainDAO = new TrainDAO();
+                    ArrayList<Train> trainList = trainDAO.readAllTrains();
+                    TrainConsole.print(trainList);
                         Integer idTrain = CheckTrain.readIdTrain();
                         String nameTrain = CheckTrain.readNameTrain();
                         String typeTrain = CheckTrain.readTypeTrain();
@@ -64,17 +69,14 @@ public class Logic {
                         train.typeTrain = typeTrain;
                         train.classTrain = classTrain;
                         train.statusTrain = statusTrain;
-                        TrainDAO trainDAO = new TrainDAO();
                         trainDAO.updateTrain(train);}
+                if (adminCommand == 3) {
+                    TrainDAO trainDAO = new TrainDAO();
+                    ArrayList<Train> trainList = trainDAO.readAllTrains();
+                    TrainConsole.print(trainList);
+                    Integer idTrain = CheckTrain.readIdTrain();
+                    trainDAO.deleteTrainByID(idTrain);}
 
-
-
-
-                    String nameStation = Controller.chooseNameStation();
-                    String timeArrival = Controller.chooseTimeArrival();
-                    ArrayList<Scoreboard> scoreboards = scoreboardDAO.readScoreboardsByStationNameAndArrival(nameStation, timeArrival);
-                    ScoreboardConsole.print(scoreboards);
-                    chooseCommand();
             }
 
         }

@@ -41,9 +41,11 @@ class TrainDAOTest {
     @Test
     void updateTrain() throws SQLException, ClassNotFoundException {
         Train train = new Train();
-        train.idTrain = 1;
-        train.nameTrain = "Intercity122'";
-        Train newTrain =trainDAO.updateTrain(train);
+        train.nameTrain = "Оберіг";
+        train.typeTrain = "Нічний швидкий";
+        train.classTrain = 2;
+        train.statusTrain = "В дорозі";
+        train = trainDAO.updateTrain(train);
         System.out.println(train.nameTrain);
     }
 

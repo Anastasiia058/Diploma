@@ -9,7 +9,7 @@ public class CheckTrain {
     public static int readIdTrain() {
         System.out.println("Введіть id поїзда");
         String idTrain = scanner.nextLine();
-        if (idTrain.matches("([/^\\d+$/])")) {
+        if (idTrain.matches("^\\d+$")) {
             System.out.println("Дані прийнято");
         } else {
             System.out.println("Дані введено не коректно. Спробуйте ще раз");

@@ -15,7 +15,10 @@ class TrainDAOTest {
     @Test
     void createTrain() throws SQLException, ClassNotFoundException {
         Train train = new Train ();
-        train.nameTrain = "Ekspres";
+        train.nameTrain = "Оберіг";
+        train.typeTrain = "Нічний швидкий";
+        train.classTrain = 2;
+        train.statusTrain = "В дорозі";
         TrainDAO trainDAO = new TrainDAO();
         trainDAO.createTrain(train);
     }

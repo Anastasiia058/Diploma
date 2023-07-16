@@ -1,6 +1,7 @@
 package model;
 
 import DAO.ScoreboardDAO;
+import DAO.TrainDAO;
 import DTO.Scoreboard;
 import DTO.Train;
 import checkObject.CheckTrain;
@@ -40,13 +41,35 @@ public class Logic {
             else {
                 int adminCommand = Controller.chooseAdminAction();
                 if (adminCommand == 1) {
-                    String nameTrain = CheckTrain.readTrain();
+                    String nameTrain = CheckTrain.readNameTrain();
+                    String typeTrain = CheckTrain.readTypeTrain();
+                    Integer classTrain = CheckTrain.readClassTrain();
+                    String statusTrain = CheckTrain.readStatusTrain();
+                    Train train = new Train();
+                    train.nameTrain = nameTrain;
+                    train.typeTrain = typeTrain;
+                    train.classTrain = classTrain;
+                    train.statusTrain = statusTrain;
+                    TrainDAO trainDAO = new TrainDAO();
+                    trainDAO.createTrain(train);}
+                if (adminCommand == 2) {
+                        Integer idTrain = CheckTrain.readIdTrain();
+                        String nameTrain = CheckTrain.readNameTrain();
+                        String typeTrain = CheckTrain.readTypeTrain();
+                        Integer classTrain = CheckTrain.readClassTrain();
+                        String statusTrain = CheckTrain.readStatusTrain();
+                        Train train = new Train();
+                        train.idTrain = idTrain;
+                        train.nameTrain = nameTrain;
+                        train.typeTrain = typeTrain;
+                        train.classTrain = classTrain;
+                        train.statusTrain = statusTrain;
+                        TrainDAO trainDAO = new TrainDAO();
+                        trainDAO.updateTrain(train);}
 
 
 
 
-
-                }
                     String nameStation = Controller.chooseNameStation();
                     String timeArrival = Controller.chooseTimeArrival();
                     ArrayList<Scoreboard> scoreboards = scoreboardDAO.readScoreboardsByStationNameAndArrival(nameStation, timeArrival);

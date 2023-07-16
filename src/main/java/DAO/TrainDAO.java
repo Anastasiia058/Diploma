@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TrainDAO {
     public static Statement statement;
 
+    private static Scanner scanner = new Scanner(System.in);
     public TrainDAO() {
 
         statement = DataBase.getStatement();
@@ -18,9 +20,9 @@ public class TrainDAO {
     public void createTrain(Train train) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         statement.executeUpdate("INSERT INTO train (name_train, type_train, class_train, status_train) values ('" +
-                train.nameTrain + ", " +
-                train.typeTrain + ", " +
-                train.classTrain + ", " +
+                train.nameTrain + "', '" +
+                train.typeTrain + "', '" +
+                train.classTrain + "', '" +
                 train.statusTrain + "')");
     }
 

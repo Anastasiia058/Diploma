@@ -3,15 +3,11 @@ package DTO;
 import java.util.Scanner;
 
 public class Train {
-    public int idTrain;
+    public Integer idTrain;
     public String nameTrain;
-    public String statusTrain;
-
     public String typeTrain;
-
     public Integer classTrain;
-
-
+    public String statusTrain;
 
     @Override
     public String toString() {

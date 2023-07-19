@@ -16,11 +16,10 @@ public class TrackDAO {
 
     public void createTrack(Track track) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        statement.executeUpdate("INSERT INTO track (track_status, track_number, Station_id_station, Train_id_train) values ('" +
+        statement.executeUpdate("INSERT INTO track (track_status, track_number, id_station) values ('" +
                 track.trackStatus + "', " +
                 track.trackNumber + ", " +
-                track.idStation + ", " +
-                track.idTrain + ")");
+                track.idStation + ")");
     }
 
     public ArrayList<Track> readAllTracks() throws ClassNotFoundException, SQLException {
@@ -32,8 +31,7 @@ public class TrackDAO {
             track.idTrack = resultSet.getInt("id_track");
             track.trackStatus = resultSet.getString("track_status");
             track.trackNumber = resultSet.getInt("track_number");
-            track.idStation = resultSet.getInt("Station_id_station");
-            track.idTrain = resultSet.getInt("Train_id_train");
+            track.idStation = resultSet.getInt("id_station");
             tracks.add(track);
         }
         return tracks;
@@ -46,26 +44,24 @@ public class TrackDAO {
             track.idTrack = resultSet.getInt("id_track");
             track.trackStatus = resultSet.getString("track_status");
             track.trackNumber = resultSet.getInt("track_number");
-            track.idStation = resultSet.getInt("Station_id_Station");
-            track.idTrain = resultSet.getInt("Train_id_train");
+            track.idStation = resultSet.getInt("id_Station");
             return track;
         }
         else throw new SQLException();
     }
 
-    public  ArrayList<Track> findAllTracksByTrainId (int trainId){
+    public  ArrayList<Track> findAllTracksByStationId (int idStation){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM train_schedule.track " +
-                    "WHERE Train_id_train = " + trainId);
+                    "WHERE id_station = " + idStation );
             ArrayList<Track> tracks = new ArrayList<>();
             while(resultSet.next()) {
                 Track track = new Track();
                 track.idTrack = resultSet.getInt("id_track");
                 track.trackStatus = resultSet.getString("track_status");
                 track.trackNumber = resultSet.getInt("track_number");
-                track.idStation = resultSet.getInt("Station_id_station");
-                track.idTrain = resultSet.getInt("Train_id_train");
+                track.idStation = resultSet.getInt("id_station");
                 tracks.add(track);
             }
             return tracks;
@@ -81,15 +77,14 @@ public class TrackDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM train_schedule.track " +
-                    "WHERE Station_id_station = " + idStation + " AND track_status = '" + trackStatus + "';");
+                    "WHERE id_station = " + idStation + " AND track_status = '" + trackStatus + "';");
             ArrayList<Track> tracks = new ArrayList<>();
             while(resultSet.next()) {
                 Track track = new Track();
                 track.idTrack = resultSet.getInt("id_track");
                 track.trackStatus = resultSet.getString("track_status");
                 track.trackNumber = resultSet.getInt("track_number");
-                track.idStation = resultSet.getInt("Station_id_station");
-                track.idTrain = resultSet.getInt("Train_id_train");
+                track.idStation = resultSet.getInt("id_station");
                 tracks.add(track);
             }
             return tracks;
@@ -106,17 +101,15 @@ public class TrackDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             boolean execute = statement.execute("UPDATE track SET track_status = '" + track.trackStatus +
                     "', track_number = " + track.trackNumber +
-                    ", Station_id_station = " + track.idStation +
-                    ", Train_id_train = " + track.idTrain +
-                    " WHERE id_track = " + track.idTrack);
+                    "', Station_id_station = " + track.idStation +
+                    "', WHERE id_track = " + track.idTrack);
             ResultSet resultSet = statement.executeQuery("SELECT * FROM track where id_track=" + track.idTrack);
             if (resultSet.next()) {
                 Track newTrack = new Track();
                 newTrack.idTrack = resultSet.getInt("id_track");
                 newTrack.trackStatus = resultSet.getString("track_status");
                 track.trackNumber = resultSet.getInt("track_number");
-                newTrack.idStation = resultSet.getInt("Station_id_station");
-                track.idTrain = resultSet.getInt("Train_id_train");
+                newTrack.idStation = resultSet.getInt("id_station");
                 return newTrack;
             }
             else throw new SQLException("Такої колії не існує. Оновлення неможливе");
@@ -129,6 +122,6 @@ public class TrackDAO {
 
     public void deleteTrackByID (int idTrack) throws ClassNotFoundException,SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        boolean result = statement.execute("DELETE FROM track where id_track =" + idTrack);
+        boolean result = statement.execute("DELETE FROM track where id_track = " + idTrack);
     }
 }

@@ -42,7 +42,7 @@ public class ScoreboardDAO {
         return scoreboards;
     }
 
-    public ArrayList<Scoreboard> readAllScheduleForOperativeTrains() {
+    public static ArrayList<Scoreboard> readAllScheduleForOperativeTrains() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -70,8 +70,36 @@ public class ScoreboardDAO {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<Scoreboard> readTimeTableByIdRoute(Integer idRoute) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String request = "SELECT *  FROM route " +
+                "LEFT JOIN schedule ON route.id_route = schedule.id_route " +
+                "LEFT JOIN train_has_route ON train_has_route.id_route = route.id_route " +
+                "LEFT JOIN train ON train.id_train = train_has_route.id_train " +
+                "LEFT JOIN station ON schedule.id_station = station.id_station " +
+                "WHERE route.id_route = '" +
+                idRoute + "' " +
+                "ORDER by schedule.arrival";
+        ResultSet resultSet = statement.executeQuery(request);
+        ArrayList<Scoreboard> timeTable = new ArrayList<>();
+        while (resultSet.next()) {
+            Scoreboard table= new Scoreboard();
+            table.timeArrival = resultSet.getString("arrival");
+            table.timeDeparture = resultSet.getString("departure");
+            table.nameStation = resultSet.getString("name_station");
+            table.nameTrain = resultSet.getString("name_train");
+            table.idRoute = resultSet.getInt("route.id_route");
+            table.typeTrain = resultSet.getString("type_train");
+            table.nameRoute = resultSet.getString("name_route");
+            table.dayWeek = resultSet.getString("day_week");
 
-    public ArrayList<Scoreboard> readTimeTableByNameRoute(String nameRoute, String nameDay) throws SQLException, ClassNotFoundException {
+            timeTable.add(table);
+        }
+
+        return timeTable;
+    }
+
+    public ArrayList<Scoreboard> readTimeTableByNameRouteAndDayWeek(String nameRoute, String nameDay) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String request = "SELECT *  FROM route " +
                 "LEFT JOIN schedule ON route.id_route = schedule.id_route " +

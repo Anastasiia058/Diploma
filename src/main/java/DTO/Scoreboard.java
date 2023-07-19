@@ -8,7 +8,6 @@ public class Scoreboard {
     public String typeTrain;
     public String nameRoute;
     public String nameTrain;
-
     public int idStation;
     public String nameStation;
     public String timeArrival;
@@ -17,7 +16,7 @@ public class Scoreboard {
     public String statusTrain;
     public String dayWeek;
     public int trip;
-    private static final String Time_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+
     Scanner scanner = new Scanner(System.in);
 
     public int getIdTrain() {
@@ -92,17 +91,6 @@ public class Scoreboard {
         } else {
             System.out.println("Дані введено не коректно. Спробуйте ще раз");
             readStation();
-        }
-    }
-
-    public void readArrival() {
-        System.out.println("Введіть час відправлення від у форматі HH:MM:SS");
-        timeArrival = scanner.nextLine();
-        if (timeArrival.matches(Time_PATTERN)) {
-            System.out.println("Дані прийнято");
-        } else {
-            System.out.println("Дані введено не коректно. Спробуйте ще раз");
-            readArrival();
         }
     }
 

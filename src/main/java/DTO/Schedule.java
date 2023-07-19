@@ -6,13 +6,10 @@ public class Schedule {
     public int idSchedule;
     public String timeArrival;
     public String timeDeparture;
-
-    public int idStation;
     public String dayWeek;
-    public int idRoute;
     public int trip;
-
-    public int idTrain;
+    public int idRoute;
+    public int idStation;
 
     /*private static final String Time_Date_PATTERN = "^(([0,1][0-9])|(2[0-3])):[0-5][0-9]\\s(0?[1-9]|[12][0-9]|3[01])\\.(0?[1-9]|1[012])\\.((19|20)\\d\\d)$";*/
     private static final String Time_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
@@ -42,15 +39,12 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Schedule{" +
-                "idSchedule=" + idSchedule +
-                ", arrival= '" + timeArrival + '\'' +
-                ", departure= '" + timeDeparture + '\'' +
+        return  "idSchedule =" + idSchedule +
+                ", arrival = '" + timeArrival + '\'' +
+                ", departure = '" + timeDeparture + '\'' +
                 ", trip = " + trip +
-                ", day_week " + dayWeek +
-                ", id_route= " + idRoute +
-                ", id_station= " + idStation +
-                ", id_train " + idTrain +
-                '}';
+                ", day_week = " + dayWeek +
+                ", id_route = " + idRoute +
+                ", id_station = " + idStation;
     }
 }

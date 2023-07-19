@@ -20,7 +20,7 @@ public class CheckRoute {
         public static String readNameRoute () {
             System.out.println("Введіть назву маршруту через дефіс, де перше слово - населений пункт відправлення, а друге - населений пункт прибуття");
             String nameRoute = scanner.nextLine();
-            if (nameRoute.matches("([А-ЯҐІЇ{1}][а-яґії{30}-]-*)")) {
+            if (nameRoute.matches("([А-ЯҐІЇ-]+[А-Яа-яҐІЇґії-]*)")) {
                 System.out.println("Дані прийнято");
             } else {
                 System.out.println("Дані введено не коректно. Спробуйте ще раз");

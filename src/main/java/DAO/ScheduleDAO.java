@@ -16,12 +16,15 @@ public class ScheduleDAO {
 
     public void createSchedule (Schedule schedule) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        statement.executeUpdate("INSERT INTO schedule (arrival, departure, id_train, id_station, id_route,) values ('" +
+        String updateRequest = "INSERT INTO schedule (arrival, departure, day_week, trip, id_route, id_station) values ('" +
                 schedule.timeArrival +"', '" +
                 schedule.timeDeparture +"', " +
-                schedule.idTrain + ", " +
-                schedule.idStation + ", " +
-                schedule.idRoute +")");
+                schedule.dayWeek +"', " +
+                schedule.trip +"', " +
+                schedule.idRoute + ", " +
+                schedule.idStation +")";
+        System.out.println();
+        statement.executeUpdate(updateRequest);
     }
 
     public ArrayList<Schedule> readAllSchedule() throws ClassNotFoundException, SQLException {
@@ -33,9 +36,10 @@ public class ScheduleDAO {
             schedule.idSchedule = resultSet.getInt("id_schedule");
             schedule.timeArrival = resultSet.getString("arrival");
             schedule.timeDeparture = resultSet.getString("departure");
-            schedule.idRoute = resultSet.getInt("Route_id_route");
-            schedule.idStation = resultSet.getInt("Station_id_station");
-            schedule.idTrain = resultSet.getInt("Train_id_train");
+            schedule.dayWeek = resultSet.getString("day_week");
+            schedule.trip = resultSet.getInt("trip");
+            schedule.idRoute = resultSet.getInt("id_route");
+            schedule.idStation = resultSet.getInt("id_station");
 
             arrivalDeparture.add(schedule);
         }
@@ -44,15 +48,16 @@ public class ScheduleDAO {
 
     public Schedule findArrivalDepartureByID (int idSchedule) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM train where id_train=" + idSchedule);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM schedule where id_schedule=" + idSchedule);
         if (resultSet.next()) {
             Schedule schedule = new Schedule();
             schedule.idSchedule = resultSet.getInt("id_schedule");
             schedule.timeArrival= resultSet.getString("arrival");
             schedule.timeDeparture = resultSet.getString("departure");
-            schedule.idRoute = resultSet.getInt("Route_id_route");
-            schedule.idStation = resultSet.getInt("Station_id_station");
-            schedule.idTrain = resultSet.getInt("Train_id_train");
+            schedule.dayWeek = resultSet.getString("day_week");
+            schedule.trip = resultSet.getInt("trip");
+            schedule.idRoute = resultSet.getInt("id_route");
+            schedule.idStation = resultSet.getInt("id_station");
             return schedule;
         }
         else throw new SQLException();
@@ -60,15 +65,21 @@ public class ScheduleDAO {
 
     public Schedule updateSchedule (Schedule schedule) throws  ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        boolean execute = statement.execute("UPDATE schedule SET arrival = '" + schedule.timeArrival + "', departure = '" + schedule.timeDeparture+ "' WHERE id_schedule = " + schedule.idSchedule);
+        boolean execute = statement.execute("UPDATE schedule SET arrival = '" +
+                schedule.timeArrival + "', departure = '" +
+                schedule.timeDeparture + "', day_week = '" +
+                schedule.dayWeek + "', trip = '" +
+                schedule.trip + "' WHERE id_schedule = " +
+                schedule.idSchedule);
         ResultSet resultSet = statement.executeQuery("SELECT * FROM schedule where id_schedule=" + schedule.idSchedule);
         if (resultSet.next()) {
             Schedule newSchedule = new Schedule();
             newSchedule.idSchedule = resultSet.getInt("id_schedule");
             newSchedule.timeArrival = resultSet.getString("arrival");
             newSchedule.timeDeparture = resultSet.getString("departure");
+            schedule.dayWeek = resultSet.getString("day_week");
+            schedule.trip = resultSet.getInt("trip");
             schedule.idStation = resultSet.getInt("Station_id_station");
-            schedule.idTrain = resultSet.getInt("Train_id_train");
             return newSchedule;
         }
         else throw new SQLException("Такого розкладу не існує. Оновлення неможливе");

@@ -17,7 +17,8 @@ public class RouteDAO {
 
     public void createRoute(Route route) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        statement.executeUpdate("INSERT INTO route (name_route) values ('" +
+        statement.executeUpdate("INSERT INTO route (id_route, name_route) values ('" +
+                route.idRoute +"', '" +
                 route.nameRoute + "')");
     }
 
@@ -36,7 +37,7 @@ public class RouteDAO {
 
     public Route findRouteByID (int idRoute) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM route where id_route=" + idRoute);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM route where id_route = " + idRoute);
         if (resultSet.next()) {
             Route route = new Route();
             route.idRoute = resultSet.getInt("id_route");

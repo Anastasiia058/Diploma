@@ -56,11 +56,11 @@ public class StatusChanger extends TimerTask {
                 }
             } else {
                 train.statusTrain = "В дорозі";
-                List<Track> tracks = trackDAO.findAllTracksByTrainId(entry.getKey());
+                List<Track> tracks = trackDAO.findAllTracksByStationId(entry.getKey());
                 for (Track track : tracks){
                     if (track.trackStatus.equals("Посадка")){
                         track.trackStatus = "Вільна";
-                        track.idTrain = null;
+                        track.idStation = null;
                         trackDAO.updateTrack(track);
                     }
                 }

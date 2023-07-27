@@ -21,7 +21,7 @@ public class CheckTrain {
     public static String readNameTrain() {
         System.out.println("Введіть назву поїзда");
         String nameTrain = scanner.nextLine();
-        if (nameTrain.matches("([А-ЯҐІЇ{1}\\s][а-яґії{30}\\s]*)")) {
+        if (nameTrain.matches("([А-ЯҐІЇ-]+[А-Яа-яҐІЇґії-]*)")) {
             System.out.println("Дані прийнято");
         } else {
             System.out.println("Дані введено не коректно. Спробуйте ще раз");

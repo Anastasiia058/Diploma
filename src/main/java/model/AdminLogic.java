@@ -12,7 +12,6 @@ import checkObject.CheckAnswer;
 import checkObject.CheckRoute;
 import checkObject.CheckStation;
 import checkObject.CheckTrain;
-import consoleViewers.Controller;
 import consoleViewers.RouteConsole;
 import consoleViewers.StationConsole;
 import consoleViewers.TrainConsole;

@@ -2,15 +2,10 @@ package model;
 
 import DAO.*;
 import DTO.*;
-import checkObject.CheckAnswer;
-import checkObject.CheckRoute;
-import checkObject.CheckStation;
-import checkObject.CheckTrain;
 import consoleViewers.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Logic {
 

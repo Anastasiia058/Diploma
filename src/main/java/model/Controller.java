@@ -1,4 +1,4 @@
-package consoleViewers;
+package model;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,13 +14,17 @@ public class Controller {
 
     public static void welcomeMessage() {
         System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію про проведення посадки на потяги, " +
-                "стан потягів, попередить про настання аварійної ситуації.");
+                "стан потягів, попередить про настання аварійної ситуації." +
+                "Оберіть ваш статус у системі:" +
+                "1. Пасажир" +
+                "2. Адміністратор");
+
     }
     public static int chooseAction() {
         System.out.println("Оберіть потрібну дію.\n" +
                 "1. Дізнатися рух поїздів на станції \n" +
                 "2. Розклад та статус потягу \n" +
-                "3. Редагування системи");
+                "3. Внесення змін у систему (доступ лише після введення паролю)");
         String command =  scanner.nextLine();
         if (!StringUtils.isNumeric(command)){
             System.out.println("Невірна команда");

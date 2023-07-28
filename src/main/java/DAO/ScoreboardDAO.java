@@ -20,7 +20,7 @@ public class ScoreboardDAO {
                 "LEFT JOIN train_has_route AS thr ON thr.id_route = r.id_route " +
                 "LEFT JOIN train ON train.id_train = thr.id_train " +
                 "LEFT JOIN station as st ON st.id_station = schedule.id_station " +
-                "LEFT JOIN track ON st.id_station= track.id_station " +
+                "LEFT JOIN track ON schedule.id_track= track.id_track " +
                 "WHERE st.name_station = '" + nameStation +
                 "' AND schedule.arrival >= '" + timeArrival +"'";
         YamlReader.printDebug(request);

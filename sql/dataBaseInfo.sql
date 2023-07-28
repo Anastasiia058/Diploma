@@ -138,14 +138,14 @@ INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, 
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('12:36:00', '12:50:00', 7, 14, 'Ср', 1, 27);
 
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('18:56:00', '19:11:00', 7, 1, 'Чт', 2, 1);
-INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track)values ('20:06:00', '20:08:00', 7, 21, 'Чт', 2, 42);
+INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('20:06:00', '20:08:00', 7, 21, 'Чт', 2, 42);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('22:42:00', '22:58:00', 7, 8, 'Чт', 2, 15);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('03:05:00', '03:30:00', 7, 9, 'Пт', 2, 17);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('05:36:00', '05:38:00', 7, 10, 'Пт', 2, 19);
-INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track)values ('05:50:00', '06:16:00', 7, 11, 'Пт', 2, 22);
+INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('05:50:00', '06:16:00', 7, 11, 'Пт', 2, 22);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('08:11:00', '08:13:00', 7, 12, 'Пт', 2, 24);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('12:00:00', '12:13:00', 7, 13, 'Пт', 2, 25);
-INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track)values ('12:36:00', '12:50:00', 7, 14, 'Пт', 2, 27);
+INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('12:36:00', '12:50:00', 7, 14, 'Пт', 2, 27);
 
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('20:16:00', '20:21:00', 117, 1, 'Ср', 1, 1);
 INSERT INTO schedule (arrival, departure, id_route, id_station, day_week, trip, id_track) values ('03:11:00', '03:31:00', 117, 11, 'Чт', 1, 22);

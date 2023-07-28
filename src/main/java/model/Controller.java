@@ -6,25 +6,16 @@ import java.util.Scanner;
 
 public class Controller {
 
-    private static final String HH_MM_SS_PATTERN = "(?:[01]\\d|2[0-3]):(?:[0-5]\\d):(?:[0-5]\\d)";
-    private static final String HH_MM_PATTERN = "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
-    private static final String HH_PATTERN = "^(0[0-9]|1[0-9]|2[0-3])$";
     private static final String DAY_WEEK_PATTERN = "^(Пн|Вт|Ср|Чт|Пт|Сб|Нд)$";
     static Scanner scanner = new Scanner(System.in);
 
-    public static void welcomeMessage() {
-        System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію про проведення посадки на потяги, " +
-                "стан потягів, попередить про настання аварійної ситуації." +
-                "Оберіть ваш статус у системі:" +
-                "1. Пасажир" +
-                "2. Адміністратор");
-
-    }
     public static int chooseAction() {
-        System.out.println("Оберіть потрібну дію.\n" +
+        System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію \nпро проведення посадки на потяги, " +
+                "стан потягів, попередить \nпро настання аварійної ситуації.\n" + "\n" +
+                "Оберіть потрібну дію.\n" +
                 "1. Дізнатися рух поїздів на станції \n" +
                 "2. Розклад та статус потягу \n" +
-                "3. Внесення змін у систему (доступ лише після введення паролю)");
+                "3. Внесення змін у систему (доступ лише після введення паролю)\n");
         String command =  scanner.nextLine();
         if (!StringUtils.isNumeric(command)){
             System.out.println("Невірна команда");
@@ -66,7 +57,7 @@ public class Controller {
         return Integer.parseInt(command);
     }
     public static String chooseNameStation() {
-        System.out.println("Введіть назву станції, з якої плануєте відправлятись.");
+        System.out.println("Введіть назву станції, з якої плануєте відправлятись.\n");
         return scanner.nextLine();
     }
     public static String chooseNameRoute() {
@@ -107,24 +98,6 @@ public class Controller {
             readTrainTrip();
         }
         return Integer.parseInt(trip);
-    }
-
-    public static String readTime() {
-        System.out.println("Введіть час відправлення від у форматі HH:MM:SS або HH:MM або HH");
-        String timeArrival = scanner.nextLine();
-        if (timeArrival.matches(HH_MM_SS_PATTERN)) {
-            System.out.println("Дані прийнято " + timeArrival);
-            return timeArrival;
-        } else if (timeArrival.matches(HH_MM_PATTERN)){
-            timeArrival = timeArrival + ":00";
-        } else if (timeArrival.matches(HH_PATTERN)){
-            timeArrival = timeArrival + ":00:00";
-        } else {
-            System.out.println("Дані введено не коректно. Спробуйте ще раз");
-            readTime();
-        }
-        System.out.println("Дані прийнято " + timeArrival);
-        return timeArrival;
     }
 
     public static String chooseCheckDay() {

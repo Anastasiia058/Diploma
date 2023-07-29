@@ -65,13 +65,16 @@ public class AdminLogic {
             chooseAdminCommand();
         }
         if (adminCommand == 4) {
+            RouteDAO routeDAO = new RouteDAO();
+            ArrayList<Route> routeList = routeDAO.readAllRoutes();
+            RouteConsole.print(routeList);
             Integer idRoute = CheckRoute.readIdRoute();
             String nameRoute = CheckRoute.readNameRoute();
             Route route  = new Route();
             route.idRoute =  idRoute;
             route.nameRoute = nameRoute;
-            RouteDAO routeDAO = new RouteDAO();
-            routeDAO.createRoute(route);
+            RouteDAO routeDAO1 = new RouteDAO();
+            routeDAO1.createRoute(route);
             System.out.println("Маршрут створено "+ route.toString());
             System.out.println("Бажаєте додати/змінити/видалити станції у маршрут");
             if (CheckAnswer.check()) {

@@ -9,6 +9,11 @@ public class Controller {
     private static final String DAY_WEEK_PATTERN = "^(Пн|Вт|Ср|Чт|Пт|Сб|Нд)$";
     static Scanner scanner = new Scanner(System.in);
 
+    public static void welcomeMessage() {
+        System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію \nпро проведення посадки на потяги, " +
+                "стан потягів, попередить \nпро настання аварійної ситуації.\n" + "\n");
+    }
+
     public static int chooseAction() {
         System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію \nпро проведення посадки на потяги, " +
                 "стан потягів, попередить \nпро настання аварійної ситуації.\n" + "\n" +
@@ -38,7 +43,7 @@ public class Controller {
     }
 
     public static int chooseAdminAction() {
-        System.out.println("Оберіть потрібну дію.\n" +
+        System.out.println("\nОберіть потрібну дію.\n" +
                 "1. Додати  потяг\n" +
                 "2. Редагувати потяг\n" +
                 "3. Видалити потяг\n" +
@@ -57,15 +62,15 @@ public class Controller {
         return Integer.parseInt(command);
     }
     public static String chooseNameStation() {
-        System.out.println("Введіть назву станції, з якої плануєте відправлятись.\n");
+        System.out.println("\nВведіть назву станції, з якої плануєте відправлятись.\n");
         return scanner.nextLine();
     }
     public static String chooseNameRoute() {
-        System.out.println("Введіть маршрут. Наприклад, Київ-Харків.");
+        System.out.println("\nВведіть маршрут. Наприклад, Київ-Харків.\n");
         return scanner.nextLine();
     }
     public static String chooseTimeArrival() {
-        System.out.println("Введіть час від. Наприклад, 09:00:00 або 9  Наприклад 22 або 22:10 для годин та хвилин");
+        System.out.println("\nВведіть час від. Наприклад 22, або 22:10 для годин та хвилин\n");
         String time = scanner.nextLine();
         if (StringUtils.isNumeric(time)){
             Integer timeInt = Integer.parseInt(time);
@@ -77,7 +82,7 @@ public class Controller {
     }
 
     public static String readDayWeek() {
-        System.out.println("Введіть час відправлення від у форматі Пн, Вт, Ср, Чт, Пт, Сб або Нд");
+        System.out.println("\nВведіть час відправлення від у форматі Пн, Вт, Ср, Чт, Пт, Сб або Нд\n");
         String dayWeek = scanner.nextLine();
         if (dayWeek.matches(DAY_WEEK_PATTERN)) {
             System.out.println("Дані прийнято " + dayWeek);
@@ -89,7 +94,7 @@ public class Controller {
     }
 
     public static int readTrainTrip() {
-        System.out.println("яка це поїздка для цього паршруту");
+        System.out.println("Яка це поїздка для цього паршруту");
         String trip = scanner.nextLine();
         if (trip.matches("^\\d+$")) {
             System.out.println("Дані прийнято " + trip);
@@ -101,12 +106,12 @@ public class Controller {
     }
 
     public static String chooseCheckDay() {
-        System.out.println("Введіть день тижня. Наприклад Пн або Ср");
+        System.out.println("\nВведіть день тижня. Наприклад Пн або Ср\n");
         return scanner.nextLine();
     }
 
     public static String readPassword() {
-        System.out.println("Для того, щоб внести зміни у систему, введіть, будь ласка, пароль");
+        System.out.println("\nДля того, щоб внести зміни у систему, введіть, будь ласка, пароль\n");
         return scanner.nextLine();
     }
 }

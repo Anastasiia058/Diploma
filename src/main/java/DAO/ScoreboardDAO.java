@@ -23,7 +23,7 @@ public class ScoreboardDAO {
                 "LEFT JOIN track ON schedule.id_track= track.id_track " +
                 "WHERE st.name_station = '" + nameStation +
                 "' AND schedule.arrival >= '" + timeArrival +"'";
-        YamlReader.printDebug(request);
+        //YamlReader.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 
@@ -42,7 +42,7 @@ public class ScoreboardDAO {
 
             scoreboards.add(scoreboard);
         }
-        YamlReader.printDebug(scoreboards.toString());
+        //YamlReader.printDebug(scoreboards.toString());
         return scoreboards;
     }
 
@@ -55,7 +55,7 @@ public class ScoreboardDAO {
                     "LEFT JOIN route AS r ON thr.id_route = r.id_route " +
                     "LEFT JOIN schedule as s ON s.id_route = r.id_route " +
                     "where t.status_train != 'В ремонті' and s.id_schedule IS NOT NULL;";
-            YamlReader.printDebug(request);
+            //YamlReader.printDebug(request);
 
             ResultSet resultSet = statement.executeQuery(request);
 
@@ -87,7 +87,7 @@ public class ScoreboardDAO {
                 "WHERE route.id_route = '" +
                 idRoute + "' " +
                 "ORDER by schedule.arrival";
-        YamlReader.printDebug(request);
+        //YamlReader.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 
@@ -122,7 +122,7 @@ public class ScoreboardDAO {
                 nameRoute +
                 "' "+
                 "ORDER by schedule.arrival";
-        YamlReader.printDebug(request);
+        //YamlReader.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 

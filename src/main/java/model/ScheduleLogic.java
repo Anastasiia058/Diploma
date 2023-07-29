@@ -3,6 +3,7 @@ package model;
 import DAO.*;
 import DTO.*;
 import checkObject.CheckAnswer;
+import checkObject.CheckSchedule;
 import checkObject.CheckStation;
 import consoleViewers.*;
 
@@ -29,10 +30,10 @@ public class ScheduleLogic {
             Integer idStation = CheckStation.readIdStation();
 
             System.out.println("Введіть час прибуття на станцію");
-            String timeArrival = Controller.readTime();
+            String timeArrival = CheckSchedule.readTime();
 
             System.out.println("Введіть час відправлення зі станції");
-            String timeDeparture = Controller.readTime();
+            String timeDeparture = CheckSchedule.readTime();
 
             System.out.println("Введіть день тижня");
             String day = Controller.readDayWeek();

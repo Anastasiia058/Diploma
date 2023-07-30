@@ -10,7 +10,7 @@ public class Main {
                 //System.out.println(YamlReader.getReadConfig());
 
                 CronJob cronJob = new CronJob();
-                //cronJob.runCroneJobs();
+                cronJob.runCroneJobs();
 
                 Logic.chooseCommand();
 

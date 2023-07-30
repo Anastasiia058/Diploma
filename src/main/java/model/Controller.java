@@ -82,7 +82,7 @@ public class Controller {
     }
 
     public static String readDayWeek() {
-        System.out.println("\nВведіть час відправлення від у форматі Пн, Вт, Ср, Чт, Пт, Сб або Нд\n");
+        System.out.println("\nФормат введення: Пн, Вт, Ср, Чт, Пт, Сб або Нд\n");
         String dayWeek = scanner.nextLine();
         if (dayWeek.matches(DAY_WEEK_PATTERN)) {
             System.out.println("Дані прийнято " + dayWeek);

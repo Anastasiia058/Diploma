@@ -76,7 +76,7 @@ public class AdminLogic {
             RouteDAO routeDAO1 = new RouteDAO();
             routeDAO1.createRoute(route);
             System.out.println("Маршрут створено "+ route.toString());
-            System.out.println("Бажаєте додати/змінити/видалити станції у маршрут");
+            System.out.println("Бажаєте додати станції у маршрут?");
             if (CheckAnswer.check()) {
                 ScheduleLogic.chooseScheduleCommand(route);
             }
@@ -104,6 +104,9 @@ public class AdminLogic {
             route.idRoute = idRoute;
             route.nameRoute= nameRoute;
             routeDAO.updateRoute(route);
+            System.out.println("Бажаєте додати/змінити/видалити станції у маршрут");
+            if (CheckAnswer.check()) {
+                ScheduleLogic.chooseScheduleCommand(route);
             chooseAdminCommand();
         }
         if (adminCommand == 6) {

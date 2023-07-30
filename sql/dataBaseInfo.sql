@@ -53,6 +53,7 @@ INSERT INTO station (name_station) values ('Одеса');
 INSERT INTO station (name_station) values ('Фастів');
 INSERT INTO station (name_station) values ('Бердичів');
 INSERT INTO station (name_station) values ('Луцьк');
+INSERT INTO station (name_station) values ('Лубни');
 
 INSERT INTO train_has_route (id_train, id_route) values (2, 97);
 INSERT INTO train_has_route (id_train, id_route) values (2, 98);

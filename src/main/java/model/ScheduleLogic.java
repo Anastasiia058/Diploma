@@ -49,7 +49,7 @@ public class ScheduleLogic {
             schedule.timeDeparture = timeDeparture;
             schedule.dayWeek = day;
 
-            System.out.println("\n До маршруту номер " + route.idRoute + " " + route.nameRoute + " буде добавленя зупинка " + schedule.toString() + ". \n Ви підтвердуєте?");
+            System.out.println("До маршруту номер " + route.idRoute + " " + route.nameRoute + " буде добавленя зупинка " + schedule.toString() + ". \n Ви підтверджуєте?");
             if (CheckAnswer.check()){
                 scheduleDAO.createSchedule(schedule);
                 System.out.println("Новий розклад маршруту номер " + route.idRoute + " " + route.nameRoute);

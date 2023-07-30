@@ -11,7 +11,7 @@ public class CheckSchedule {
     static Scanner scanner = new Scanner(System.in);
 
     public static String readTime() {
-        System.out.println("Введіть час відправлення від у форматі HH:MM:SS або HH:MM або HH");
+        System.out.println("Формат введення: HH:MM:SS або HH:MM або HH");
         String timeArrival = scanner.nextLine();
         if (timeArrival.matches(HH_MM_SS_PATTERN)) {
             System.out.println("Дані прийнято " + timeArrival);

@@ -23,7 +23,7 @@ public class ScheduleDAO {
                 schedule.trip +"', " +
                 schedule.idRoute + ", " +
                 schedule.idStation +")";
-        System.out.println();
+        System.out.println(updateRequest);
         statement.executeUpdate(updateRequest);
     }
 

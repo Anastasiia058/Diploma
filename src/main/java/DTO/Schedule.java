@@ -14,12 +14,14 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return  "idSchedule =" + idSchedule +
+        return  "Schedule{" +
+                "idSchedule = " + idSchedule +
                 ", arrival = '" + timeArrival + '\'' +
                 ", departure = '" + timeDeparture + '\'' +
                 ", trip = " + trip +
-                ", day_week = " + dayWeek +
+                ", day_week = '" + dayWeek +
                 ", id_route = " + idRoute +
-                ", id_station = " + idStation;
+                ", id_station = " + idStation +
+                '}';
     }
 }

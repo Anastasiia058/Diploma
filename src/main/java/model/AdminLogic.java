@@ -107,6 +107,7 @@ public class AdminLogic {
             System.out.println("Бажаєте додати/змінити/видалити станції у маршрут");
             if (CheckAnswer.check()) {
                 ScheduleLogic.chooseScheduleCommand(route);
+            }
             chooseAdminCommand();
         }
         if (adminCommand == 6) {

@@ -16,13 +16,14 @@ public class ScheduleDAO {
 
     public void createSchedule (Schedule schedule) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String updateRequest = "INSERT INTO schedule (arrival, departure, day_week, trip, id_route, id_station) values ('" +
+        String updateRequest = "INSERT INTO schedule (arrival, departure, day_week, trip, id_route, id_station, id_track) values ('" +
                 schedule.timeArrival +"', '" +
-                schedule.timeDeparture +"', " +
+                schedule.timeDeparture +"', '" +
                 schedule.dayWeek +"', " +
-                schedule.trip +"', " +
+                schedule.trip +", " +
                 schedule.idRoute + ", " +
-                schedule.idStation +")";
+                schedule.idStation + ", " +
+                schedule.idTrack + ")";
         System.out.println(updateRequest);
         statement.executeUpdate(updateRequest);
     }

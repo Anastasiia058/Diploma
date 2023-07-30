@@ -10,6 +10,7 @@ public class Schedule {
     public int trip;
     public int idRoute;
     public int idStation;
+    public int idTrack;
 
 
     @Override
@@ -22,6 +23,7 @@ public class Schedule {
                 ", day_week = '" + dayWeek +
                 ", id_route = " + idRoute +
                 ", id_station = " + idStation +
+                ", id_track = " + idTrack +
                 '}';
     }
 }

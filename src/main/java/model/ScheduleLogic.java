@@ -22,10 +22,8 @@ public class ScheduleLogic {
         ScoreboardConsole.print(scoreboards);
         int command = Controller.chooseScheduleAction();
         if (command == 1) {
-            System.out.println("\n");
             ArrayList<Station> stations = stationDAO.readAllStations();
             StationConsole.print(stations);
-            System.out.println("\n");
             System.out.println("Введіть id станції");
             Integer idStation = CheckStation.readIdStation();
 
@@ -38,8 +36,9 @@ public class ScheduleLogic {
             System.out.println("Введіть день тижня");
             String day = Controller.readDayWeek();
 
-            System.out.println("Введіть яка поїздка для поїзда");
             Integer trip = Controller.readTrainTrip();
+
+            Integer track = Controller.readIdTrack();
 
             Schedule schedule  = new Schedule();
             schedule.idRoute = route.idRoute;
@@ -48,6 +47,7 @@ public class ScheduleLogic {
             schedule.timeArrival =  timeArrival;
             schedule.timeDeparture = timeDeparture;
             schedule.dayWeek = day;
+            schedule.idTrack = track;
 
             System.out.println("До маршруту номер " + route.idRoute + " " + route.nameRoute + " буде добавленя зупинка " + schedule.toString() + ". \n Ви підтверджуєте?");
             if (CheckAnswer.check()){

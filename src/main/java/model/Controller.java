@@ -94,7 +94,7 @@ public class Controller {
     }
 
     public static int readTrainTrip() {
-        System.out.println("Яка це поїздка для цього паршруту");
+        System.out.println("Яка це поїздка для цього маршруту");
         String trip = scanner.nextLine();
         if (trip.matches("^\\d+$")) {
             System.out.println("Дані прийнято " + trip);
@@ -103,6 +103,18 @@ public class Controller {
             readTrainTrip();
         }
         return Integer.parseInt(trip);
+    }
+
+    public static int readIdTrack() {
+        System.out.println("Введіть колію, з якого буде відправлятися потяг на станції");
+        String track = scanner.nextLine();
+        if (track.matches("^\\d+$")) {
+            System.out.println("Дані прийнято " + track);
+        } else {
+            System.out.println("Дані введено не коректно. Спробуйте ще раз");
+            readIdTrack();
+        }
+        return Integer.parseInt(track);
     }
 
     public static String chooseCheckDay() {

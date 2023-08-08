@@ -19,7 +19,7 @@ class TrackDAOTest {
             track.trackStatus = "Вільна";
             track.trackNumber = 1;
             track.idStation = 1;
-            track.idTrain = 1;
+
             trackDAO.createTrack(track);
     }
 
@@ -27,7 +27,7 @@ class TrackDAOTest {
     void readAllTracks() throws SQLException, ClassNotFoundException {
         ArrayList<Track> tracks = trackDAO.readAllTracks();
         for (Track track: tracks) {
-            System.out.println(track.idTrack + " " + track.trackStatus + " " + track.trackNumber + " " + track.idStation + " " + track.idTrain);
+            System.out.println(track.idTrack + " " + track.trackStatus + " " + track.trackNumber + " " + track.idStation);
         }
     }
 
@@ -35,7 +35,7 @@ class TrackDAOTest {
     void findTrackByID() throws SQLException, ClassNotFoundException {
         int idTrack = 3;
         Track track = trackDAO.findTrackByID(idTrack);
-        System.out.println(track.idTrack + " " + track.trackStatus + " " + track.trackNumber + " " + track.idStation + " " + track.idTrain);
+        System.out.println(track.idTrack + " " + track.trackStatus + " " + track.trackNumber + " " + track.idStation);
     }
 
     @Test
@@ -45,9 +45,8 @@ class TrackDAOTest {
         track.trackStatus = "Вільна";
         track.trackNumber = 2;
         track.idStation =3;
-        track.idTrain = null;
         Track newTrack = trackDAO.updateTrack(track);
-        System.out.println(newTrack.trackStatus + " " + newTrack.idTrain);
+        System.out.println(newTrack.trackStatus );
     }
 
     @Test

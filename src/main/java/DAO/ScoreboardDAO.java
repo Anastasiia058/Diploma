@@ -50,7 +50,7 @@ public class ScoreboardDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String request = "SELECT t.id_train, name_train, status_train, arrival, departure, id_station, s.day_week, r.id_route FROM train AS t" +
+            String request = "SELECT t.id_train, name_train, status_train, arrival, departure, id_station, s.day_week, r.id_route FROM train AS t " +
                     "left JOIN train_has_route AS thr ON thr.id_train = t.id_train " +
                     "LEFT JOIN route AS r ON thr.id_route = r.id_route " +
                     "LEFT JOIN schedule as s ON s.id_route = r.id_route " +

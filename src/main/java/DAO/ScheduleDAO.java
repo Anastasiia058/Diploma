@@ -24,7 +24,7 @@ public class ScheduleDAO {
                 schedule.idRoute + ", " +
                 schedule.idStation + ", " +
                 schedule.idTrack + ")";
-        System.out.println(updateRequest);
+        //System.out.println(updateRequest);
         statement.executeUpdate(updateRequest);
     }
 
@@ -47,7 +47,7 @@ public class ScheduleDAO {
         return arrivalDeparture;
     }
 
-    public Schedule findArrivalDepartureByID (int idSchedule) throws ClassNotFoundException, SQLException {
+    public Schedule findScheduleById (int idSchedule) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         ResultSet resultSet = statement.executeQuery("SELECT * FROM schedule where id_schedule=" + idSchedule);
         if (resultSet.next()) {
@@ -69,6 +69,7 @@ public class ScheduleDAO {
         boolean execute = statement.execute("UPDATE schedule SET arrival = '" +
                 schedule.timeArrival + "', departure = '" +
                 schedule.timeDeparture + "', day_week = '" +
+                schedule.idTrack + "', id_track = ' " +
                 schedule.dayWeek + "', trip = '" +
                 schedule.trip + "' WHERE id_schedule = " +
                 schedule.idSchedule);
@@ -78,9 +79,11 @@ public class ScheduleDAO {
             newSchedule.idSchedule = resultSet.getInt("id_schedule");
             newSchedule.timeArrival = resultSet.getString("arrival");
             newSchedule.timeDeparture = resultSet.getString("departure");
+            newSchedule.idTrack = resultSet.getInt("id_track");
             schedule.dayWeek = resultSet.getString("day_week");
             schedule.trip = resultSet.getInt("trip");
-            schedule.idStation = resultSet.getInt("Station_id_station");
+            schedule.idStation = resultSet.getInt("id_station");
+
             return newSchedule;
         }
         else throw new SQLException("Такого розкладу не існує. Оновлення неможливе");

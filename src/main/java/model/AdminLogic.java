@@ -78,7 +78,7 @@ public class AdminLogic {
             System.out.println("Маршрут створено "+ route.toString());
             System.out.println("Бажаєте додати станції у маршрут?");
             if (CheckAnswer.check()) {
-                ScheduleLogic.chooseScheduleCommand(route);
+                ScheduleLogic.addStationScheduleCommand(route);
             }
             System.out.println("Бажаєте підв'язати маршрут до потяга?");
             if (CheckAnswer.check()){
@@ -106,7 +106,7 @@ public class AdminLogic {
             routeDAO.updateRoute(route);
             System.out.println("Бажаєте додати/змінити/видалити станції у маршрут");
             if (CheckAnswer.check()) {
-                ScheduleLogic.chooseScheduleCommand(route);
+                ScheduleLogic.updateStationScheduleCommand(route);
             }
             chooseAdminCommand();
         }

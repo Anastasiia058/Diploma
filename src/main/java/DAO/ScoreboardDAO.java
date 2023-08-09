@@ -2,6 +2,7 @@ package DAO;
 
 import DTO.Scoreboard;
 import com.mysql.cj.jdbc.result.ResultSetImpl;
+import utill.Debuger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ public class ScoreboardDAO {
                 "LEFT JOIN track ON schedule.id_track= track.id_track " +
                 "WHERE st.name_station = '" + nameStation +
                 "' AND schedule.arrival >= '" + timeArrival +"'";
-        //YamlReader.printDebug(request);
+        Debuger.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 
@@ -42,7 +43,7 @@ public class ScoreboardDAO {
 
             scoreboards.add(scoreboard);
         }
-        //YamlReader.printDebug(scoreboards.toString());
+        Debuger.printDebug(scoreboards.toString());
         return scoreboards;
     }
 
@@ -55,7 +56,7 @@ public class ScoreboardDAO {
                     "LEFT JOIN route AS r ON thr.id_route = r.id_route " +
                     "LEFT JOIN schedule as s ON s.id_route = r.id_route " +
                     "where t.status_train != 'В ремонті' and s.id_schedule IS NOT NULL;";
-            //YamlReader.printDebug(request);
+            Debuger.printDebug(request);
 
             ResultSet resultSet = statement.executeQuery(request);
 
@@ -84,16 +85,19 @@ public class ScoreboardDAO {
                 "LEFT JOIN train_has_route ON train_has_route.id_route = route.id_route " +
                 "LEFT JOIN train ON train.id_train = train_has_route.id_train " +
                 "LEFT JOIN station ON schedule.id_station = station.id_station " +
+                "LEFT JOIN track ON schedule.id_track = track.id_track " +
                 "WHERE route.id_route = '" +
                 idRoute + "' " +
                 "ORDER by schedule.arrival";
-        //YamlReader.printDebug(request);
+        Debuger.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 
         ArrayList<Scoreboard> timeTable = new ArrayList<>();
         while (resultSet.next()) {
-            Scoreboard table= new Scoreboard();
+            Scoreboard table = new Scoreboard();
+            table.idSchedule = resultSet.getInt("id_schedule");
+            table.idStation = resultSet.getInt("id_station");
             table.timeArrival = resultSet.getString("arrival");
             table.timeDeparture = resultSet.getString("departure");
             table.nameStation = resultSet.getString("name_station");
@@ -102,6 +106,7 @@ public class ScoreboardDAO {
             table.typeTrain = resultSet.getString("type_train");
             table.nameRoute = resultSet.getString("name_route");
             table.dayWeek = resultSet.getString("day_week");
+            table.trackNumber = resultSet.getInt("id_track");
 
             timeTable.add(table);
         }
@@ -122,16 +127,16 @@ public class ScoreboardDAO {
                 nameRoute +
                 "' "+
                 "ORDER by schedule.arrival";
-        //YamlReader.printDebug(request);
+        Debuger.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
 
         if (((ResultSetImpl) resultSet).getRows().hasNext()) {
             resultSet.next();
-            YamlReader.printDebug(resultSet.toString());
+
 
             Integer trip = resultSet.getInt("trip");
-            request =  "SELECT route.id_route, name_train, type_train, name_route, arrival, departure, name_station, day_week FROM route " +
+            request =  "SELECT route.id_route, name_train, type_train, name_route, arrival, departure, name_station, day_week, status_train FROM route " +
                     "LEFT JOIN schedule ON route.id_route = schedule.id_route " +
                     "LEFT JOIN train_has_route AS thr ON thr.id_route = route.id_route " +
                     "LEFT JOIN train ON train.id_train = thr.id_train " +
@@ -148,8 +153,9 @@ public class ScoreboardDAO {
                     "           WHEN 'Сб' THEN 6\n" +
                     "           WHEN 'Нд' THEN 7\n" +
                     "         END,  schedule.arrival";
+            Debuger.printDebug(request);
             resultSet = statement.executeQuery(request);
-            YamlReader.printDebug(resultSet.toString());
+
 
             ArrayList<Scoreboard> timeTable = new ArrayList<>();
             while (resultSet.next()) {
@@ -162,6 +168,7 @@ public class ScoreboardDAO {
                 table.typeTrain = resultSet.getString("type_train");
                 table.nameRoute = resultSet.getString("name_route");
                 table.dayWeek = resultSet.getString("day_week");
+                table.statusTrain = resultSet.getString("status_train");
 
                 timeTable.add(table);
             }

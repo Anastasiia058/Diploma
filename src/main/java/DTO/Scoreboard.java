@@ -3,6 +3,7 @@ package DTO;
 import java.util.Scanner;
 
 public class Scoreboard {
+    public int idSchedule;
     public int idTrain;
     public int idRoute;
     public String typeTrain;

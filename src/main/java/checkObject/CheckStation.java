@@ -6,7 +6,7 @@ public class CheckStation {
 
     private static Scanner scanner = new Scanner(System.in);
     public static int readIdStation() {
-        System.out.println("Викристовуйте цифру");
+        System.out.println("Введіть id станції");
         String idStation = scanner.nextLine();
         if (idStation.matches("^\\d+$")) {
             System.out.println("Дані прийнято");

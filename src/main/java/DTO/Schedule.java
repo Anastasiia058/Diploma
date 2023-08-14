@@ -15,7 +15,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return  "Schedule{" +
+        return  "Schedule {" +
                 "idSchedule = " + idSchedule +
                 ", arrival = '" + timeArrival + '\'' +
                 ", departure = '" + timeDeparture + '\'' +

@@ -13,10 +13,9 @@ public class ScoreboardConsole {
         System.out.println("-----------------------------------------------------------------------------------------------------------");
         for (Scoreboard scoreboard : scoreboards) {
             System.out.println(String.format(
-                    "%1$4d | %2$10s | %3$18s | %4$12s | %5$12s | %6$16s | %7$7s | %8$12s",
+                    "%1$6d | %2$10s | %3$18s | %4$12s | %5$12s | %6$16s | %7$7s | %8$12s",
                     scoreboard.idRoute, scoreboard.nameTrain, scoreboard.nameRoute, scoreboard.dayWeek, scoreboard.timeArrival, scoreboard.timeDeparture, scoreboard.trackNumber, scoreboard.statusTrain));
         }
         System.out.println("\n");
     }
-
 }

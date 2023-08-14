@@ -11,13 +11,11 @@ public class Controller {
 
     public static void welcomeMessage() {
         System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію \nпро проведення посадки на потяги, " +
-                "стан потягів, попередить \nпро настання аварійної ситуації.\n" + "\n");
+                "стан потягів, попередить \nпро настання аварійної ситуації.\n");
     }
 
     public static int chooseAction() {
-        System.out.println("Вітаємо у системі. Ця програма допоможе вам дізнатися інформацію \nпро проведення посадки на потяги, " +
-                "стан потягів, попередить \nпро настання аварійної ситуації.\n" + "\n" +
-                "Оберіть потрібну дію.\n" +
+        System.out.println("Оберіть потрібну дію.\n" +
                 "1. Дізнатися рух поїздів на станції \n" +
                 "2. Розклад та статус потягу \n" +
                 "3. Внесення змін у систему (доступ лише після введення паролю)\n");
@@ -30,10 +28,23 @@ public class Controller {
     }
 
     public static int chooseScheduleAction() {
-        System.out.println("Оберіть потрібну дію.\n" +
+        System.out.println("Оберіть потрібну дію\n" +
                 "1. Додати станцію у маршрут \n" +
-                "2. Змінити станцію у маршрут \n" +
-                "3. Видалити станцію у маршруті");
+                "2. Повернутись до основного меню\n");
+        String command =  scanner.nextLine();
+        if (!StringUtils.isNumeric(command)){
+            System.out.println("Невірна команда");
+            chooseAdminAction();
+        }
+        return Integer.parseInt(command);
+    }
+
+    public static int chooseFullScheduleAction() {
+        System.out.println("Оберіть потрібну дію\n" +
+                "1. Додати станцію у маршрут \n" +
+                "2. Редагувати станцію у маршруті \n" +
+                "3. Видалити станцію у маршруті \n" +
+                "4. Повернутись до основного меню\n");
         String command =  scanner.nextLine();
         if (!StringUtils.isNumeric(command)){
             System.out.println("Невірна команда");
@@ -82,7 +93,7 @@ public class Controller {
     }
 
     public static String readDayWeek() {
-        System.out.println("\nФормат введення: Пн, Вт, Ср, Чт, Пт, Сб або Нд\n");
+        System.out.println("\nВведіть день тижня. Формат введення: Пн, Вт, Ср, Чт, Пт, Сб або Нд\n");
         String dayWeek = scanner.nextLine();
         if (dayWeek.matches(DAY_WEEK_PATTERN)) {
             System.out.println("Дані прийнято " + dayWeek);

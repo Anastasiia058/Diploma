@@ -30,7 +30,7 @@ INSERT INTO train (name_train, type_train, class_train, status_train) values ('�
 INSERT INTO train (name_train, type_train, class_train, status_train) values ('Столичний експерес', 'Інтерсіті', 1, 'Аварійна ситуація');
 INSERT INTO train (name_train, type_train, class_train, status_train) values ('Столичний експерес', 'Інтерсіті', 1, 'Ремонт');
 
-INSERT INTO station (name_station) values ('Київ-Пасажирський');
+INSERT INTO station (name_station) values ('Київ');
 INSERT INTO station (name_station) values ('Новоград-Волинський');
 INSERT INTO station (name_station) values ('Шепетівка');
 INSERT INTO station (name_station) values ('Здолбунів');

@@ -27,4 +27,16 @@ public class CheckSchedule {
         System.out.println("Дані прийнято " + timeArrival);
         return timeArrival;
     }
+
+    public static Integer readIdSchedule() {
+        System.out.println("Введіть id запису розкладу");
+        String idSchedule = scanner.nextLine();
+        if (idSchedule.matches("^\\d+$")) {
+            System.out.println("Дані прийнято");
+        } else {
+            System.out.println("Дані введено не коректно. Спробуйте ще раз");
+            readIdSchedule();
+        }
+        return Integer.parseInt(idSchedule);
+    }
 }

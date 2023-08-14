@@ -35,7 +35,7 @@ class ScheduleDAOTest {
     void readAllSchedule() throws SQLException, ClassNotFoundException {
         ArrayList<Schedule> schedules = scheduleDAO.readAllSchedule();
         for (Schedule schedule: schedules) {
-            System.out.println(schedule.idSchedule + ". "+ schedule.timeArrival + " " + schedule.timeDeparture +" "+ schedule.idTrain+" "+ schedule.idStation);
+            System.out.println(schedule.idSchedule + ". "+ schedule.timeArrival + " " + schedule.timeDeparture +" "+ schedule.idStation);
         }
     }*/
 
@@ -49,9 +49,11 @@ class ScheduleDAOTest {
  /*   @Test
     void findArrivalDepartureByID() throws SQLException, ClassNotFoundException {
         int idSchedule = 3;
+
         Schedule schedule = scheduleDAO.findArrivalDepartureByID(idSchedule);
         System.out.println(schedule.idSchedule + ". "+ schedule.timeArrival + " " + schedule.timeDeparture +" "+ schedule.idTrain+" "+ schedule.idStation);
     }*/
+
 
     /*@Test
     void updateSchedule() throws SQLException, ClassNotFoundException {
@@ -69,11 +71,12 @@ class ScheduleDAOTest {
         schedule.idSchedule = 6;
         schedule.timeArrival = "08:28:00";
         schedule.timeDeparture = "09:19:00";
-        schedule.idTrain = 3;
         schedule.idStation = 17;
+
         Schedule newSchedule =scheduleDAO.updateSchedule(schedule);
         System.out.println(schedule.idSchedule + ". "+ schedule.timeArrival + " " + schedule.timeDeparture +" "+ schedule.idTrain+" "+ schedule.idStation);
     }*/
+
 
     @Test
     void deleteScheduleByID() throws SQLException, ClassNotFoundException {

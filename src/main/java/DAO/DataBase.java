@@ -11,10 +11,12 @@ public class DataBase {
 
     static {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("something.jdbc.driver.YourFubarDriver");
             connection = DriverManager.getConnection(URL, USER_NAME, Password);
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException("Noi class ++ ==============");
         }
     }
 

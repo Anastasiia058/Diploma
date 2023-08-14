@@ -6,7 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Scoreboard {
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+    public int idSchedule;
     public int idTrain;
     public int idRoute;
     public String typeTrain;

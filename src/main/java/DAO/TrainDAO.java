@@ -61,6 +61,27 @@ public class TrainDAO {
         }
     }
 
+    public ArrayList<Train> findTrainByStatus (String trainStatus) {
+        ArrayList<Train> trains = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM train_schedule.train WHERE status_train='" + trainStatus + "'");
+
+            while (resultSet.next()) {
+                Train train = new Train();
+                train.idTrain = resultSet.getInt("id_train");
+                train.nameTrain = resultSet.getString("name_train");
+                train.typeTrain = resultSet.getString("type_train");
+                train.classTrain = resultSet.getInt("class_train");
+                train.statusTrain = resultSet.getString("status_train");
+                trains.add(train);
+            }
+            return trains;
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Train updateTrain (Train train) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

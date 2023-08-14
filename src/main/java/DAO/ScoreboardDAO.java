@@ -47,30 +47,31 @@ public class ScoreboardDAO {
         return scoreboards;
     }
 
-    public static ArrayList<Scoreboard> readAllScheduleForOperativeTrains() {
+    public ArrayList<Scoreboard> readAllScheduleForOperativeTrains() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String request = "SELECT r.id_route, name_train, status_train, arrival, departure, id_station FROM train AS t " +
+            String request = "SELECT t.id_train, name_train, status_train, arrival, departure, id_station, s.day_week, r.id_route FROM train AS t " +
                     "left JOIN train_has_route AS thr ON thr.id_train = t.id_train " +
                     "LEFT JOIN route AS r ON thr.id_route = r.id_route " +
                     "LEFT JOIN schedule as s ON s.id_route = r.id_route " +
                     "where t.status_train != 'В ремонті' and s.id_schedule IS NOT NULL;";
             Debuger.printDebug(request);
-
             ResultSet resultSet = statement.executeQuery(request);
-
             ArrayList<Scoreboard> scoreboards = new ArrayList<>();
             while(resultSet.next()) {
                 Scoreboard scoreboard = new Scoreboard();
-                scoreboard.idTrain = resultSet.getInt("id_route");
+                scoreboard.idTrain = resultSet.getInt("id_train");
+                scoreboard.idRoute = resultSet.getInt("id_route");
                 scoreboard.nameTrain = resultSet.getString("name_train");
                 scoreboard.timeArrival = resultSet.getString("arrival");
                 scoreboard.timeDeparture = resultSet.getString("departure");
                 scoreboard.idStation = resultSet.getInt("id_station");
                 scoreboard.statusTrain = resultSet.getString("status_train");
+                scoreboard.dayWeek = resultSet.getString("day_week");
                 scoreboards.add(scoreboard);
             }
+            YamlReader.printDebug(scoreboards.toString());
             return scoreboards;
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Я зламалась :(", e);

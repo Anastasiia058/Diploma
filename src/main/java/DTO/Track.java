@@ -7,8 +7,18 @@ public class Track {
         public Integer trackNumber;
         public String trackStatus;
         public Integer idStation;
-        public Integer idTrain;
-        Scanner scanner = new Scanner(System.in);
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "idTrack=" + idTrack +
+                ", trackNumber=" + trackNumber +
+                ", trackStatus='" + trackStatus + '\'' +
+                ", idStation=" + idStation +
+                '}';
+    }
+
+    Scanner scanner = new Scanner(System.in);
 
         public void readTrack() {
             System.out.println("Оберіть та введіть один із станів колії з нижченаведених: працює/ремонтується");

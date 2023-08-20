@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CheckRoute {
     private static Scanner scanner = new Scanner(System.in);
 
+
     public static int readIdRoute() {
         System.out.println("Введіть id маршруту");
         String idRoute = scanner.nextLine();

@@ -1,8 +1,14 @@
 package DTO;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Scoreboard {
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     public int idSchedule;
     public int idTrain;
     public int idRoute;
@@ -54,6 +60,10 @@ public class Scoreboard {
 
     public String getTimeArrival() {
         return timeArrival;
+    }
+
+    public LocalTime getLocalTimeArrival (){
+        return LocalTime.parse(timeArrival, formatter);
     }
 
     public void setTimeArrival(String timeArrival) {

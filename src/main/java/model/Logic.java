@@ -17,14 +17,14 @@ public class Logic {
             String nameStation = Controller.chooseNameStation();
             String timeArrival = Controller.chooseTimeArrival();
             ArrayList<Scoreboard> scoreboards = scoreboardDAO.readScoreboardsByStationNameAndArrival(nameStation, timeArrival);
-            ScoreboardConsole.print(scoreboards);
+            ScoreboardConsole.printScoreboardConsole(scoreboards);
             chooseCommand();
         }
         if (command == 2) {
             String nameRoute = Controller.chooseNameRoute();
             String nameDay = Controller.chooseCheckDay();
             ArrayList<Scoreboard> timeTable = scoreboardDAO.readTimeTableByNameRouteAndDayWeek(nameRoute, nameDay);
-            TimeTableConsole.print(timeTable);
+            TimeTableConsole.printTimeTableConsole(timeTable);
             chooseCommand();
         }
 

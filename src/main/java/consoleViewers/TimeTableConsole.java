@@ -5,7 +5,7 @@ import DTO.Scoreboard;
 import java.util.ArrayList;
 
 public class TimeTableConsole {
-    public static void print(ArrayList<Scoreboard> scoreboards) {
+    public static void printTimeTableConsole(ArrayList<Scoreboard> scoreboards) {
         if (scoreboards == null) {
             System.out.println("Поїзд курсує в інший день. Спробуйте ще раз");
             return;

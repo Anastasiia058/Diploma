@@ -6,7 +6,7 @@ import DTO.Train;
 import java.util.ArrayList;
 
 public class TrainConsole {
-    public static void print(ArrayList<Train> trains) {
+    public static void printTrainConsole(ArrayList<Train> trains) {
         System.out.println(String.format(
                 "%1$4s | %2$25s |  %3$20s |%4$12s | %5$16s",
                 "№", "Назва поїзда", "Тип", "Клас поїзда", "Статус потяга"));

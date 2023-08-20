@@ -41,7 +41,7 @@ public class AdminLogic {
         if (adminCommand == 2) {
             TrainDAO trainDAO = new TrainDAO();
             ArrayList<Train> trainList = trainDAO.readAllTrains();
-            TrainConsole.print(trainList);
+            TrainConsole.printTrainConsole(trainList);
             Integer idTrain = CheckTrain.readIdTrain();
             String nameTrain = CheckTrain.readNameTrain();
             String typeTrain = CheckTrain.readTypeTrain();
@@ -59,7 +59,7 @@ public class AdminLogic {
         if (adminCommand == 3) {
             TrainDAO trainDAO = new TrainDAO();
             ArrayList<Train> trainList = trainDAO.readAllTrains();
-            TrainConsole.print(trainList);
+            TrainConsole.printTrainConsole(trainList);
             Integer idTrain = CheckTrain.readIdTrain();
             trainDAO.deleteTrainByID(idTrain);
             chooseAdminCommand();
@@ -67,7 +67,7 @@ public class AdminLogic {
         if (adminCommand == 4) {
             RouteDAO routeDAO = new RouteDAO();
             ArrayList<Route> routeList = routeDAO.readAllRoutes();
-            RouteConsole.print(routeList);
+            RouteConsole.printRouteConsole(routeList);
             Integer idRoute = CheckRoute.readIdRoute();
             String nameRoute = CheckRoute.readNameRoute();
             Route route  = new Route();
@@ -84,7 +84,7 @@ public class AdminLogic {
             if (CheckAnswer.check()){
                 TrainDAO trainDAO = new TrainDAO();
                 ArrayList<Train> trainList = trainDAO.readAllTrains();
-                TrainConsole.print(trainList);
+                TrainConsole.printTrainConsole(trainList);
                 Integer idTrain = CheckTrain.readIdTrain();
                 TrainHasRoute trainHasRoute = new TrainHasRoute();
                 trainHasRoute.idTrain = idTrain;
@@ -97,7 +97,7 @@ public class AdminLogic {
         if (adminCommand == 5) {
             RouteDAO routeDAO = new RouteDAO();
             ArrayList<Route> routeList = routeDAO.readAllRoutes();
-            RouteConsole.print(routeList);
+            RouteConsole.printRouteConsole(routeList);
             Integer idRoute = CheckRoute.readIdRoute();
             String nameRoute = CheckRoute.readNameRoute();
             Route route = new Route();
@@ -113,7 +113,7 @@ public class AdminLogic {
         if (adminCommand == 6) {
             RouteDAO routeDAO = new RouteDAO();
             ArrayList<Route> routeList = routeDAO.readAllRoutes();
-            RouteConsole.print(routeList);
+            RouteConsole.printRouteConsole(routeList);
             Integer idRoute = CheckRoute.readIdRoute();
             routeDAO.deleteRouteByID(idRoute);
             chooseAdminCommand();
@@ -129,7 +129,7 @@ public class AdminLogic {
         if (adminCommand == 8) {
             StationDAO stationDAO = new StationDAO();
             ArrayList<Station> stationList = stationDAO.readAllStations();
-            StationConsole.print(stationList);
+            StationConsole.printStationConsole(stationList);
             Integer idStation = CheckStation.readIdStation();
             String nameStation = CheckStation.readNameStation();
             Station station = new Station();
@@ -141,7 +141,7 @@ public class AdminLogic {
         if (adminCommand == 9) {
             StationDAO stationDAO = new StationDAO();
             ArrayList<Station> stationList = stationDAO.readAllStations();
-            StationConsole.print(stationList);
+            StationConsole.printStationConsole(stationList);
             Integer idStation = CheckStation.readIdStation();
             stationDAO.deleteStationByID(idStation);
             chooseAdminCommand();

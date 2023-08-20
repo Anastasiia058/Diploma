@@ -19,11 +19,11 @@ public class ScheduleLogic {
 
     public static void addStationScheduleCommand(Route route) throws SQLException, ClassNotFoundException {
         ArrayList<Scoreboard> scoreboards = scoreboardDAO.readTimeTableByIdRoute(route.idRoute);
-        ScoreboardConsole.print(scoreboards);
+        ScoreboardConsole.printScoreboardConsole(scoreboards);
         int command = Controller.chooseScheduleAction();
         if (command == 1) {
             ArrayList<Station> stations = stationDAO.readAllStations();
-            StationConsole.print(stations);
+            StationConsole.printStationConsole(stations);
             Integer idStation = CheckStation.readIdStation();
             System.out.println("Введіть час прибуття на станцію");
             String timeArrival = CheckSchedule.readTime();
@@ -46,7 +46,7 @@ public class ScheduleLogic {
             if (CheckAnswer.check()) {
                 scheduleDAO.createSchedule(schedule);
                 System.out.println("Новий розклад маршруту номер " + route.idRoute + " " + route.nameRoute);
-                ScoreboardConsole.print(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
+                ScoreboardConsole.printScoreboardConsole(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
                 Controller.chooseScheduleAction();
             }
 
@@ -61,11 +61,11 @@ public class ScheduleLogic {
 
     public static void updateStationScheduleCommand(Route route) throws SQLException, ClassNotFoundException {
         ArrayList<Scoreboard> scoreboards = scoreboardDAO.readTimeTableByIdRoute(route.idRoute);
-        ScoreboardConsole.print(scoreboards);
+        ScoreboardConsole.printScoreboardConsole(scoreboards);
         int command = Controller.chooseFullScheduleAction();
         if (command == 1) {
             ArrayList<Station> stations = stationDAO.readAllStations();
-            StationConsole.print(stations);
+            StationConsole.printStationConsole(stations);
             Integer idStation = CheckStation.readIdStation();
             System.out.println("Введіть час прибуття на станцію");
             String timeArrival = CheckSchedule.readTime();
@@ -90,7 +90,7 @@ public class ScheduleLogic {
             if (CheckAnswer.check()) {
                 scheduleDAO.createSchedule(schedule);
                 System.out.println("Новий розклад маршруту номер " + route.idRoute + " " + route.nameRoute);
-                ScoreboardConsole.print(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
+                ScoreboardConsole.printScoreboardConsole(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
                 Controller.chooseScheduleAction();
             }
 
@@ -99,7 +99,7 @@ public class ScheduleLogic {
 
         if (command == 2) {
             ArrayList<Station> stations = stationDAO.readAllStations();
-            StationConsole.print(stations);
+            StationConsole.printStationConsole(stations);
             Integer idStation = CheckStation.readIdStation();
             System.out.println("Введіть час прибуття на станцію");
             String timeArrival = CheckSchedule.readTime();
@@ -122,7 +122,7 @@ public class ScheduleLogic {
             if (CheckAnswer.check()) {
                 scheduleDAO.updateSchedule(schedule);
                 System.out.println("Новий розклад маршруту номер " + route.idRoute + " " + route.nameRoute);
-                ScoreboardConsole.print(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
+                ScoreboardConsole.printScoreboardConsole(scoreboardDAO.readTimeTableByIdRoute(route.idRoute));
                 Controller.chooseScheduleAction();
             }
             updateStationScheduleCommand(route);

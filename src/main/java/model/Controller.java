@@ -40,7 +40,7 @@ public class Controller {
     }
 
     public static int chooseFullScheduleAction() {
-        System.out.println("Оберіть потрібну дію\n" +
+        System.out.println("Оберіть потрібну дію \n" +
                 "1. Додати станцію у маршрут \n" +
                 "2. Редагувати станцію у маршруті \n" +
                 "3. Видалити станцію у маршруті \n" +

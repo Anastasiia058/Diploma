@@ -1,6 +1,7 @@
 package DAO;
 
 import DTO.Track;
+import utill.Debuger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +93,7 @@ public class TrackDAO {
             String request = "SELECT * FROM train_schedule.track " +
                     "WHERE id_station = " + idStation +
                     " AND track_status = '" + status + "'";
-            YamlReader.printDebug(request);
+            Debuger.printDebug(request);
             ResultSet resultSet = statement.executeQuery(request);
             ArrayList<Track> tracks = new ArrayList<>();
             while(resultSet.next()) {
@@ -142,7 +143,7 @@ public class TrackDAO {
                     "', track_number = " + track.trackNumber +
                     ", id_station = " + track.idStation +
                     " WHERE id_track = " + track.idTrack;
-            YamlReader.printDebug(request);
+            Debuger.printDebug(request);
             boolean execute = statement.execute(request);
             ResultSet resultSet = statement.executeQuery("SELECT * FROM track where id_track=" + track.idTrack);
             if (resultSet.next()) {

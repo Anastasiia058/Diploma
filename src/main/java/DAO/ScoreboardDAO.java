@@ -1,5 +1,6 @@
 package DAO;
 
+import DTO.Route;
 import DTO.Scoreboard;
 import com.mysql.cj.jdbc.result.ResultSetImpl;
 import utill.Debuger;
@@ -11,10 +12,12 @@ import java.util.ArrayList;
 
 public class ScoreboardDAO {
     public static Statement statement;
+
     public ScoreboardDAO() {
         statement = DataBase.getStatement();
     }
-    public ArrayList<Scoreboard> readScoreboardsByStationNameAndArrival (String nameStation, String timeArrival) throws SQLException, ClassNotFoundException {
+
+    public ArrayList<Scoreboard> readScoreboardsByStationNameAndArrival(String nameStation, String timeArrival) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String request = "SELECT DISTINCT r.id_route, name_train, name_route, arrival, departure, track_number, status_train, day_week FROM schedule " +
                 "LEFT JOIN route AS r ON schedule.id_route = r.id_route " +
@@ -23,7 +26,7 @@ public class ScoreboardDAO {
                 "LEFT JOIN station as st ON st.id_station = schedule.id_station " +
                 "LEFT JOIN track ON schedule.id_track= track.id_track " +
                 "WHERE st.name_station = '" + nameStation +
-                "' AND schedule.arrival >= '" + timeArrival +"'";
+                "' AND schedule.arrival >= '" + timeArrival + "'";
         Debuger.printDebug(request);
 
         ResultSet resultSet = statement.executeQuery(request);
@@ -59,7 +62,7 @@ public class ScoreboardDAO {
             Debuger.printDebug(request);
             ResultSet resultSet = statement.executeQuery(request);
             ArrayList<Scoreboard> scoreboards = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Scoreboard scoreboard = new Scoreboard();
                 scoreboard.idTrain = resultSet.getInt("id_train");
                 scoreboard.idRoute = resultSet.getInt("id_route");
@@ -71,7 +74,7 @@ public class ScoreboardDAO {
                 scoreboard.dayWeek = resultSet.getString("day_week");
                 scoreboards.add(scoreboard);
             }
-            YamlReader.printDebug(scoreboards.toString());
+            Debuger.printDebug(scoreboards.toString());
             return scoreboards;
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Я зламалась :(", e);
@@ -79,6 +82,7 @@ public class ScoreboardDAO {
             throw new RuntimeException(e);
         }
     }
+
     public ArrayList<Scoreboard> readTimeTableByIdRoute(Integer idRoute) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String request = "SELECT *  FROM route " +
@@ -126,7 +130,7 @@ public class ScoreboardDAO {
                 nameDay +
                 "' AND name_route = '" +
                 nameRoute +
-                "' "+
+                "' " +
                 "ORDER by schedule.arrival";
         Debuger.printDebug(request);
 
@@ -137,13 +141,13 @@ public class ScoreboardDAO {
 
 
             Integer trip = resultSet.getInt("trip");
-            request =  "SELECT route.id_route, name_train, type_train, name_route, arrival, departure, name_station, day_week, status_train FROM route " +
+            request = "SELECT route.id_route, name_train, type_train, name_route, arrival, departure, name_station, day_week, status_train FROM route " +
                     "LEFT JOIN schedule ON route.id_route = schedule.id_route " +
                     "LEFT JOIN train_has_route AS thr ON thr.id_route = route.id_route " +
                     "LEFT JOIN train ON train.id_train = thr.id_train " +
                     "LEFT JOIN station ON schedule.id_station = station.id_station " +
                     "WHERE name_route = '" +
-                    nameRoute + "' "+
+                    nameRoute + "' " +
                     "AND schedule.trip = " + trip + " " +
                     "ORDER BY CASE day_week\n" +
                     "           WHEN 'Пн' THEN 1\n" +
@@ -160,7 +164,7 @@ public class ScoreboardDAO {
 
             ArrayList<Scoreboard> timeTable = new ArrayList<>();
             while (resultSet.next()) {
-                Scoreboard table= new Scoreboard();
+                Scoreboard table = new Scoreboard();
                 table.timeArrival = resultSet.getString("arrival");
                 table.timeDeparture = resultSet.getString("departure");
                 table.nameStation = resultSet.getString("name_station");
@@ -176,5 +180,29 @@ public class ScoreboardDAO {
             return timeTable;
         }
         return null;
+    }
+
+    public static ArrayList<Scoreboard> findRouteByStationId(int idStation) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        ResultSet resultSet = statement.executeQuery("SELECT route.id_route, name_route, name_train, day_week, trip, station.id_station, name_station FROM route\n" +
+                "LEFT JOIN schedule ON route.id_route = schedule.id_route\n" +
+                "LEFT JOIN train_has_route ON train_has_route.id_route = route.id_route \n" +
+                "LEFT JOIN train ON train.id_train = train_has_route.id_train \n" +
+                "LEFT JOIN station ON schedule.id_station = station.id_station\n" +
+                "WHERE station.id_station = " + idStation);
+
+        ArrayList<Scoreboard> routsList = new ArrayList<>();
+        while (resultSet.next()) {
+            Scoreboard routs = new Scoreboard();
+            routs.idRoute = resultSet.getInt("id_route");
+            routs.nameRoute = resultSet.getString("name_route");
+            routs.nameTrain = resultSet.getString("name_train");
+            routs.dayWeek = resultSet.getString("day_week");
+            routs.trip = resultSet.getInt("trip");
+            routs.idStation = resultSet.getInt("id_station");
+            routs.nameStation = resultSet.getString("name_station");
+            routsList.add(routs);
+            }
+        return routsList;
     }
 }

@@ -1,18 +1,13 @@
 package model;
 
-import DAO.RouteDAO;
-import DAO.StationDAO;
-import DAO.TrainDAO;
-import DAO.TrainHasRouteDAO;
-import DTO.Route;
-import DTO.Station;
-import DTO.Train;
-import DTO.TrainHasRoute;
+import DAO.*;
+import DTO.*;
 import checkObject.CheckAnswer;
 import checkObject.CheckRoute;
 import checkObject.CheckStation;
 import checkObject.CheckTrain;
 import consoleViewers.RouteConsole;
+import consoleViewers.ScoreboardConsole;
 import consoleViewers.StationConsole;
 import consoleViewers.TrainConsole;
 
@@ -143,11 +138,16 @@ public class AdminLogic {
             ArrayList<Station> stationList = stationDAO.readAllStations();
             StationConsole.printStationConsole(stationList);
             Integer idStation = CheckStation.readIdStation();
-            stationDAO.deleteStationByID(idStation);
+            ArrayList<Scoreboard> routs = ScoreboardDAO.findRouteByStationId(idStation);
+            if (routs.isEmpty()){
+                stationDAO.deleteStationByID(idStation);
+                System.out.println("Станцію видалено з бази даних");
+            } else {
+                System.out.println("Дану станцію неможливо видалити з бази даних, оскільки існують потяг/-и, що курсують через неї");
+                ScoreboardConsole.printScoreboardConsoleWithRoute(routs);
+                System.out.println("Будь ласка, оберіть '5. Редагувати маршрут', щоб скорегувати зупинки потяга у маршруті, а потім поверніться до '9. Видалити станцію'");
+            }
             chooseAdminCommand();
-        }
-        if (adminCommand == 0) {
-            Logic.chooseCommand();
         }
     }
 }

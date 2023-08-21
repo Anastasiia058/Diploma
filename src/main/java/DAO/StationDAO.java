@@ -42,6 +42,7 @@ public class StationDAO {
         }
         else throw new SQLException();
     }
+
     public Station updateStation (Station station) throws  ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         boolean execute = statement.execute("UPDATE station SET name_station = '" + station.nameStation + "' WHERE id_station = " + station.idStation);
